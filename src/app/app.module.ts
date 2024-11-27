@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from "./components/home/home.component";
 import { DescriptionComponent } from './components/description/description.component';
 import { GuardsListComponent } from './components/guards-list/guards-list.component';
+import { CalendarComponent } from './calendar';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { GuardsListComponent } from './components/guards-list/guards-list.compon
     HomeComponent,
     DescriptionComponent,
     GuardsListComponent,
+    CalendarComponent,
+
 
 ],
   providers: [],
