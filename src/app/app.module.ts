@@ -10,7 +10,8 @@ import { HomeComponent } from "./components/home/home.component";
 import { DescriptionComponent } from './components/description/description.component';
 import { GuardsListComponent } from './components/guards-list/guards-list.component';
 import { CalendarComponent } from './calendar';
-
+import { BodyComponent } from './body/body.component';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +20,10 @@ import { CalendarComponent } from './calendar';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MainContainerComponent,
     HeaderComponent,
     HomeComponent,
-    DescriptionComponent,
-    GuardsListComponent,
-    CalendarComponent,
+    BodyComponent,
+    FooterComponent,
 
 
 ],

@@ -1,2 +1,14 @@
-<h1>Welcome this is Resume Onguardia</h1>
-<h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt aliquam placeat perferendis nemo maxime consectetur nulla sit mollitia sequi quaerat? Nobis molestias repellendus facilis accusantium voluptatem blanditiis quam aperiam quia?</h3>
+<div>
+  <ng-template ngFor let-task1="$implicit" [ngForOf]="tasksList" let-i="index">
+  <mat-selection-list #tasks>
+      <mat-list-option (click)="deleteTask(tasksList.indexOf(task1))">{{task1}}</mat-list-option>
+  </mat-selection-list>
+</ng-template>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Add new task</mat-label>
+          <input matInput placeholder="Ex. Play Guitar" [(ngModel)]="taskNew" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+    </form>
+      <button mat-raised-button (click)="addTask()">Add Task</button> 
+    </div>
