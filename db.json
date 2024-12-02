@@ -29,27 +29,5 @@
       "id": 7
     }
   ],
-  "periodicElement": [
-    {
-      "id": 1,
-      "position": 1,
-      "name": "Hydrogen",
-      "weight": 1.0079,
-      "symbol": "H"
-    },
-    {
-      "id": 2,
-      "position": 2,
-      "name": "Helium",
-      "weight": 4.0026,
-      "symbol": "He"
-    },
-    {
-      "id": 3,
-      "position": 2,
-      "name": "Helium",
-      "weight": 4.0026,
-      "symbol": "He"
-    }
-  ]
+  "periodicElement": []
 }

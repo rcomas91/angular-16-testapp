@@ -2,7 +2,13 @@
 <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
        class="mat-elevation-z8">
 
-  <!-- Position Column -->
+  <!-- id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
+      No.
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
       No.
@@ -31,9 +37,26 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
       Symbol
     </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container>
 
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+
+  </ng-container>
+  <ng-container matColumnDef="Delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="warn" focusable="false" (click)="DeleteElem(element.id)">
+        Delete
+      </button>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="Update">
+    <th mat-header-cell *matHeaderCellDef> Update </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="warn" focusable="false" (click)="Update(element)">
+        Update
+      </button>
+    </td>
+  </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

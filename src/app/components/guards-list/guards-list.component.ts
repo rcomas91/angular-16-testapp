@@ -4,15 +4,11 @@ import {AfterViewInit, ViewChild, inject} from '@angular/core';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { IPeriodicElement, PeriodicElementService } from 'src/app/services/periodicElement/periodic-element.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, getLocaleFirstDayOfWeek } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+
 
 // const ELEMENT_DATA: PeriodicElement[] = [
 //   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -34,30 +30,49 @@ export interface PeriodicElement {
   templateUrl: './guards-list.component.html',
   styleUrls: ['./guards-list.component.scss'],
   standalone:true,
-  imports:[MatTableModule, MatSortModule]
+  imports:[MatTableModule, MatSortModule,  MatButtonModule]
 })
 export class GuardsListComponent {
+Update(elem:IPeriodicElement) {
+  elem.symbol='Change';
+  this._periodicElementService.updatePeriodicEl(elem).subscribe((response)=>{
+    const index= this.periodicElementList().findIndex((pe)=>pe.id===elem.id);
+    this.periodicElementList.mutate((periodicElementList)=>(periodicElementList[index]=elem));
+
+  })
+
+}
  
 AddElement() {
-  const elem = {id:3,position: 2, name: 'Helium', weight:  4.0026, symbol: 'He'} as PeriodicElement;
+  const id=Math.random();
+  const elem = {id:id,position: 2, name: 'Helium', weight:  4.0026, symbol: 'He'} as IPeriodicElement;
    this._periodicElementService.createPeriodicEl(elem).subscribe((response)=>{
-    this.periodicElementList.update((periodicElementList)=>[...periodicElementList,elem])
+    this.periodicElementList.set([...this.periodicElementList(),elem])
     console.log(this.periodicElementList()); 
     this.dataSource.data = this.periodicElementList();
    });
-
-
  }
+
   _periodicElementService = inject(PeriodicElementService);
   private _liveAnnouncer = inject(LiveAnnouncer);
   periodicElementList=signal<IPeriodicElement[]>([])
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','Delete','Update'];
   dataSource = new MatTableDataSource();
 
+  DeleteElem(id:number){  
+    this._periodicElementService.deletePeriodicEl(id).subscribe((response)=>{
+      this.periodicElementList.set(this.periodicElementList().filter((pelem)=>pelem.id !== id));
+      this.dataSource.data = this.periodicElementList();
+      console.log(this.periodicElementList()); 
+
+
+    })
+  }
+  
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   constructor() {
-    this._periodicElementService.getPeriodicEl().subscribe((response: PeriodicElement[]) => {
+    this._periodicElementService.getPeriodicEl().subscribe((response: IPeriodicElement[]) => {
       this.periodicElementList.set(response);
       console.log(response);
       this.dataSource.data = this.periodicElementList();
