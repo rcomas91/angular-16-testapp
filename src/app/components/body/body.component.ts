@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {MatTabsModule} from '@angular/material/tabs';
-import { GuardsListComponent } from '../components/guards-list';
+import { DescriptionComponent } from '../description';
 import { CalendarComponent } from '../calendar';
-import { DescriptionComponent } from '../components/description';
+import { GuardsListComponent } from '../guards-list';
+
 
 @Component({
   selector: 'app-body',
