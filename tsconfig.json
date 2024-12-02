@@ -24,6 +24,44 @@
       "dom"
     ]
   },
+  "paths": {
+    "@components/*": [
+      "src/app/components/*"
+    ],
+    "@directives/*": [
+      "src/app/directives/*"
+    ],
+    "@guards/*": [
+      "src/app/guards/*"
+    ],
+    "@interceptors/*": [
+      "src/app/interceptors/*"
+    ],
+    "@interfaces/*": [
+      "src/app/interfaces/*"
+    ],
+    "@shared/*": [
+      "src/app/shared/*"
+    ],
+    "@mocks/*": [
+      "src/app/mocks/*"
+    ],
+    "@pages/*": [
+      "src/app/pages/*"
+    ],
+    "@pipes/*": [
+      "src/app/pipes/*"
+    ],
+    "@services/*": [
+      "src/app/services/*"
+    ],
+    "@utils/*": [
+      "src/app/utils/*"
+    ],
+    "@env/*": [
+      "src/environments/*"
+    ]
+  },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
