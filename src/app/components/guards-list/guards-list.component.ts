@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {AfterViewInit, ViewChild, inject} from '@angular/core';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { ResponseGetGuards } from 'src/app/interfaces/response.interface';
+import { GuardServiceService } from 'src/app/services/guard-service.service';
+import { CommonModule } from '@angular/common';
+import { SignalsService } from 'src/app/shared/services/signals.service';
 
 export interface PeriodicElement {
   name: string;
@@ -30,7 +34,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './guards-list.component.html',
   styleUrls: ['./guards-list.component.scss'],
   standalone:true,
-  imports:[MatTableModule, MatSortModule]
+  imports:[MatTableModule, MatSortModule, CommonModule]
 })
 export class GuardsListComponent {
   private _liveAnnouncer = inject(LiveAnnouncer);
@@ -39,6 +43,22 @@ export class GuardsListComponent {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
+
+  readonly _guardsService = inject(GuardServiceService);
+  readonly _signalService = inject(SignalsService);
+  readonly guardsList = signal([] as ResponseGetGuards[]);
+  messageGuards = signal('');
+  
+ 
+  constructor() { 
+    this._guardsService.getGuards().subscribe((response: ResponseGetGuards[]) => {
+      this.guardsList.set(response);
+      if (response.length === 0) {
+        this.messageGuards.set('No guards available');
+      }
+      this._signalService.updateFiltroBusqueda(`Tiene ${response.length} guardias`);
+    });
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

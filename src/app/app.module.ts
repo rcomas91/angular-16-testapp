@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from "./components/home/home.component";
 import { DescriptionComponent } from './components/description/description.component';
 import { GuardsListComponent } from './components/guards-list/guards-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { GuardsListComponent } from './components/guards-list/guards-list.compon
     HomeComponent,
     DescriptionComponent,
     GuardsListComponent,
-
+    HttpClientModule
 ],
   providers: [],
   bootstrap: [AppComponent]
