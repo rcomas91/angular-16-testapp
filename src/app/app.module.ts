@@ -7,6 +7,8 @@ import { HeaderComponent } from './components/header';
 import { HomeComponent } from './components/home';
 import { FooterComponent } from './components/footer';
 import { BodyComponent } from './components/body';
+import { TodoComponent } from './components/todo/todo.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,13 @@ import { BodyComponent } from './components/body';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    BodyComponent
-
+    BodyComponent,
+    TodoComponent,
 
 ],
   providers: [],

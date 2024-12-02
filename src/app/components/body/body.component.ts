@@ -3,6 +3,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { DescriptionComponent } from '../description';
 import { CalendarComponent } from '../calendar';
 import { GuardsListComponent } from '../guards-list';
+import { TodoComponent } from "../todo/todo.component";
 
 
 @Component({
@@ -10,9 +11,9 @@ import { GuardsListComponent } from '../guards-list';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss'],
   standalone:true,
-  imports:[MatTabsModule, DescriptionComponent,
+  imports: [MatTabsModule, DescriptionComponent,
     GuardsListComponent,
-    CalendarComponent,]
+    CalendarComponent, TodoComponent]
 })
 export class BodyComponent {
 
