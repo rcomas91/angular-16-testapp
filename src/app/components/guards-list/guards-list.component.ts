@@ -4,6 +4,8 @@ import {AfterViewInit, ViewChild, inject} from '@angular/core';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { IPeriodicElement, PeriodicElementService } from 'src/app/services/periodicElement/periodic-element.service';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 export interface PeriodicElement {
   name: string;
@@ -35,6 +37,17 @@ export interface PeriodicElement {
   imports:[MatTableModule, MatSortModule]
 })
 export class GuardsListComponent {
+ 
+AddElement() {
+  const elem = {id:3,position: 2, name: 'Helium', weight:  4.0026, symbol: 'He'} as PeriodicElement;
+   this._periodicElementService.createPeriodicEl(elem).subscribe((response)=>{
+    this.periodicElementList.update((periodicElementList)=>[...periodicElementList,elem])
+    console.log(this.periodicElementList()); 
+    this.dataSource.data = this.periodicElementList();
+   });
+
+
+ }
   _periodicElementService = inject(PeriodicElementService);
   private _liveAnnouncer = inject(LiveAnnouncer);
   periodicElementList=signal<IPeriodicElement[]>([])
@@ -46,6 +59,7 @@ export class GuardsListComponent {
   constructor() {
     this._periodicElementService.getPeriodicEl().subscribe((response: PeriodicElement[]) => {
       this.periodicElementList.set(response);
+      console.log(response);
       this.dataSource.data = this.periodicElementList();
   });
   }

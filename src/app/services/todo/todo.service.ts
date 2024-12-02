@@ -22,6 +22,7 @@ export class TodoService {
     
   } 
   createPost(post:IPost):Observable<IPost>{
+    debugger
     delete post.id;
     return this.http.post<IPost>('http://localhost:3000/posts',post)
     .pipe(tap(this._upsertTodo));

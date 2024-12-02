@@ -16,6 +16,7 @@ export class PeriodicElementService {
     return this.http.get<IPeriodicElement[]>('http://localhost:3000/periodicElement');
     
   } 
-
-
+  createPeriodicEl(element:IPeriodicElement):Observable<IPeriodicElement>{
+    return this.http.post<IPeriodicElement>('http://localhost:3000/periodicElement',element);
+  }
 }
