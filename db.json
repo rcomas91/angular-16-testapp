@@ -10,7 +10,12 @@
     },
     {
       "id": 3,
-      "title": "hghfcvxcx"
+      "title": "12"
     }
+  ],
+  "periodicElement": [
+    {"position": 1, "name": "Hydrogen", "weight": 1.0079, "symbol": "H"},
+    {"position": 1, "name": "Helium", "weight":  4.0026, "symbol": "He"}
+
   ]
 }

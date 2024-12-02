@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { take } from 'rxjs';
-import { IPost, TodoService } from 'src/app/services/tasks/todo/todo.service';
+import { IPost, TodoService } from 'src/app/services/todo/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -22,8 +22,6 @@ todoForm = this.fb.group({
 
 
 get todos(){
-  console.log(this.todoService.todos());
-
   return this.todoService.todos;
   
 }
