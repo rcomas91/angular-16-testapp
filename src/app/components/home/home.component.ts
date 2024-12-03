@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MainContainerComponent } from '../layout';
+import { TodoService } from 'src/app/services/todo/todo.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,5 +11,13 @@ import { MainContainerComponent } from '../layout';
   imports: [MainContainerComponent]
 })
 export class HomeComponent {
+
+  todoService=inject(TodoService)
+  get todos(){
+    return this.todoService.todos;
+  
+  }
+  
+
 
 }

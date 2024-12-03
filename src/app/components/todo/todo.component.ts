@@ -10,7 +10,7 @@ import { IPost, TodoService } from 'src/app/services/todo/todo.service';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
   standalone:true,
-  imports:[CommonModule,ReactiveFormsModule]
+  imports:[CommonModule,ReactiveFormsModule,CommonModule]
 })
 export class TodoComponent {
 todoService = inject(TodoService);
@@ -20,12 +20,10 @@ todoForm = this.fb.group({
   title:['',Validators.required]
 });
 
-
 get todos(){
   return this.todoService.todos;
   
 }
-
 
 constructor() {
 this.todoService.getPosts().pipe(take(1)).subscribe();

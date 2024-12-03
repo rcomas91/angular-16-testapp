@@ -44,6 +44,7 @@ Update(elem:IPeriodicElement) {
 }
  
 AddElement() {
+  //TODO FIX WAY FOR GENERATE THE IDS
   const id=Math.random();
   const elem = {id:id,position: 2, name: 'Helium', weight:  4.0026, symbol: 'He'} as IPeriodicElement;
    this._periodicElementService.createPeriodicEl(elem).subscribe((response)=>{
